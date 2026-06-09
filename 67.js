@@ -142,7 +142,7 @@
                 setTimeout(() => spawn67("67"), i * 25);
             }
 
-            return Game.gainBuff('67 overload', 15 * Game.fps, 1);
+            return Game.gainBuff('67 67 67 67 67', 15 * Game.fps, 1);
         }
 
         return buff;
