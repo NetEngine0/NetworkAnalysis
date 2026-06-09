@@ -48,8 +48,8 @@
     
     // buff
     
-    if (!Game.buffTypes['67 overload']) {
-        CCSE.NewBuff('67 overload', function(time, pow){
+    if (!Game.buffTypes['67 67 67 67 67']) {
+        CCSE.NewBuff('67 67 67 67 67', function(time, pow){
             return {
                 name: "67 67 67 67 67",
                 desc: "Everything is 67.",
@@ -81,7 +81,7 @@
         }
 
         if (me._67hit) {
-            list.push('67 overload');
+            list.push('67 67 67 67 67');
         }
 
     });
@@ -132,7 +132,7 @@
    
     Game.customShimmerTypes['golden'].customBuff.push(function(me, buff, choice){
 
-        if (choice == '67 overload') {
+        if (choice == '67 67 67 67 67') {
 
             window._67active = true;
             endTime = Game.T + 15 * Game.fps;
@@ -142,7 +142,7 @@
                 setTimeout(() => spawn67("67"), i * 25);
             }
 
-            return Game.gainBuff('67 67 67 67 67', 15 * Game.fps, 1);
+            return Game.gainBuff('67 67 67 67 67', 15, 1);
         }
 
         return buff;
