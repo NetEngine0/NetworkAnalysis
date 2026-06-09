@@ -73,6 +73,5 @@
         return buff;
     });
 
-    Game.Popup("Mods Injected!");
 
 })();

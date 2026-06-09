@@ -62,8 +62,6 @@
 
             Game.recalculateGains = 1;
 
-            Game.Popup("Market Correction");
-
             return Game.gainBuff('market correction', 1, 1);
         }
 
