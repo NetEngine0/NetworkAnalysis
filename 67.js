@@ -73,7 +73,7 @@
 
         if (id !== lastRoll) {
             lastRoll = id;
-            me._67hit = (Math.random() < 0.05);
+            me._67hit = (Math.random() < 0.1);
         }
 
         if (me._67hit) {
