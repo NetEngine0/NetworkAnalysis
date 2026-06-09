@@ -148,6 +148,5 @@
         return buff;
     });
 
-    Game.Popup("67 67 67 67 67");
 
 })();
