@@ -1,16 +1,37 @@
 (function waitForCCSE(){
 
-    if (!Game || !CCSE || !CCSE.isLoaded) {
+    if (!Game || !CCSE || !CCSE.isLoaded || !Game.customShimmerTypes) {
         setTimeout(waitForCCSE, 500);
         return;
     }
 
-    if (window.SixtySevenOneFileLoaded) return;
-    window.SixtySevenOneFileLoaded = true;
+    if (window.SixtySevenBuffFixFinal) return;
+    window.SixtySevenBuffFixFinal = true;
 
-    
-    // 67 popups
-    
+    // =========================
+    // 🎭 REGISTER BUFF FIRST (IMPORTANT FIX)
+    // =========================
+    if (!Game.buffTypes['67_overload']) {
+        CCSE.NewBuff('67_overload', function(time, pow){
+            return {
+                name: "67 67 67 67 67",
+                desc: "Everything is 67.",
+                icon: [10, 14],
+                time: time,
+                add: function(){}
+            };
+        });
+    }
+
+    // =========================
+    // STATE
+    // =========================
+    window._67active = false;
+    let endTime = 0;
+
+    // =========================
+    // 🌪 POPUPS
+    // =========================
     let chaosLayer = document.createElement("div");
     chaosLayer.style.position = "fixed";
     chaosLayer.style.left = "0";
@@ -22,22 +43,18 @@
     document.body.appendChild(chaosLayer);
 
     function spawn67(text){
-
         let el = document.createElement("div");
         el.innerHTML = text;
 
         el.style.position = "absolute";
         el.style.left = Math.random() * window.innerWidth + "px";
         el.style.top = Math.random() * window.innerHeight + "px";
-
         el.style.opacity = "1";
         el.style.transition = "opacity 1.5s linear";
-
         el.style.fontSize = (25 + Math.random() * 35) + "px";
         el.style.color = "#fff";
         el.style.textShadow = "2px 2px 4px #000";
-        el.style.transform =
-            "rotate(" + (Math.random() * 60 - 30) + "deg)";
+        el.style.transform = "rotate(" + (Math.random() * 60 - 30) + "deg)";
 
         chaosLayer.appendChild(el);
 
@@ -45,30 +62,9 @@
         setTimeout(() => el.remove(), 6500);
     }
 
-    
-    // buff
-    
-    if (!Game.buffTypes['67 67 67 67 67']) {
-        CCSE.NewBuff('67 67 67 67 67', function(time, pow){
-            return {
-                name: "67 67 67 67 67",
-                desc: "Everything is 67.",
-                icon: [10, 14],
-                time: 15 * Game.fps,
-                add: function(){}
-            };
-        });
-    }
-
-    
-    // state
-    
-    window._67active = false;
-    let endTime = 0;
-
-    
-    // gc spawn
-   
+    // =========================
+    // 🍪 SAFE GOLDEN COOKIE HOOK (RESTORED RELIABILITY)
+    // =========================
     let lastRoll = -1;
 
     Game.customShimmerTypes['golden'].customListPush.push(function(me, list){
@@ -81,72 +77,78 @@
         }
 
         if (me._67hit) {
-            list.push('67 67 67 67 67');
+            list.push('67_overload');
         }
 
     });
 
-    
-    // buildings 67
-   
+    // =========================
+    // 🏭 BUILDINGS
+    // =========================
     function force67Buildings(){
-
         for (let i in Game.Objects) {
-
             let obj = Game.Objects[i];
-
             obj.amount = 67;
             obj.owned = 67;
-            obj.bought = 67;
-
-            if (obj.refresh) obj.refresh();
         }
+    }
 
+    function restoreBuildings(){
+        for (let i in Game.Objects) {
+            let obj = Game.Objects[i];
+            obj.amount = obj.owned;
+        }
         Game.recalculateGains = 1;
     }
 
-    
-    // override logic 
-    
+    // =========================
+    // 🔁 MAIN LOOP (10s FIXED)
+    // =========================
     Game.registerHook("logic", function () {
 
         if (!window._67active) return;
 
         if (Game.T > endTime) {
             window._67active = false;
+            restoreBuildings();
+            Game.cookiesPs = 0;
+            Game.cookiesPsRaw = 0;
+            Game.computedMouseCps = 0;
             return;
         }
 
-        //  lock buildings
         force67Buildings();
 
-        //  lock cps
         Game.cookiesPs = 67;
         Game.cookiesPsRaw = 67;
         Game.computedMouseCps = 67;
-
     });
 
-    
-    // effect
-   
+    // =========================
+    // 🍪 EFFECT (NO RETURN STRING CRASH)
+    // =========================
     Game.customShimmerTypes['golden'].customBuff.push(function(me, buff, choice){
 
-        if (choice == '67 67 67 67 67') {
+        if (choice == '67_overload') {
 
             window._67active = true;
-            endTime = Game.T + 15 * Game.fps;
+            endTime = Game.T + 10 * Game.fps;
 
-            //  long-lasting popups
             for (let i = 0; i < 90; i++) {
                 setTimeout(() => spawn67("67"), i * 25);
             }
 
-            return Game.gainBuff('67 67 67 67 67', 15, 1);
+            me.die();
+
+            // IMPORTANT: directly apply buff instead of relying on return
+            Game.gainBuff('67_overload', 10, 1);
+
+            return buff;
         }
 
         return buff;
     });
 
+    Game.Popup("67 OVERLOAD BUFF FIXED");
 
 })();
