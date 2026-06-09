@@ -36,7 +36,7 @@
             lastRoll = id;
 
             // appears 1% of the time
-            me._binaryHit = (Math.random() < 0.01);
+            me._binaryHit = (Math.random() < 0.08);
         }
 
         if (me._binaryHit) {
