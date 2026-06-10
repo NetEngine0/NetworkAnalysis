@@ -15,10 +15,10 @@
         CCSE.NewBuff('super click frenzy', function(time, pow){
             return {
                 name: "Super Click Frenzy",
-                desc: "Clicking power x50000 for 20 seconds!",
+                desc: "Clicking power x" + pow + " for " + Math.ceil(time / Game.fps) + " seconds!",
                 icon: [11, 14], // You can change this icon
-                time: 20 * Game.fps,
-                multClick: 5000,
+                time: 24 * Game.fps,
+                multClick: pow,
                 add: function(){}
             };
         });
@@ -52,7 +52,7 @@
         if (choice == 'super click frenzy') {
 
 
-            return Game.gainBuff('super click frenzy', 20 * Game.fps, 50000);
+            return Game.gainBuff('super click frenzy', 24 * Game.fps, 67420);
         }
 
         return buff;
