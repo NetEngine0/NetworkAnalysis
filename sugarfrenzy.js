@@ -34,7 +34,7 @@
 
         if (id !== lastRoll) {
             lastRoll = id;
-            me._sugarRushHit = (Math.random() < 0.02); // 0.5% chance
+            me._sugarRushHit = (Math.random() < 0.1); // 10% chance
         }
 
         if (me._sugarRushHit) {

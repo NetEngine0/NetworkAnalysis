@@ -35,7 +35,7 @@
 
         if (id !== lastRoll) {
             lastRoll = id;
-            me._superClickHit = (Math.random() < 0.01); // 1% chance
+            me._superClickHit = (Math.random() < 0.05); // 5% chance
         }
 
         if (me._superClickHit) {
