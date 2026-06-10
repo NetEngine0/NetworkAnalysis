@@ -8,9 +8,9 @@
     if (window.SixtySevenBuffFixFinal) return;
     window.SixtySevenBuffFixFinal = true;
 
-    // =========================
-    // 🎭 REGISTER BUFF FIRST (IMPORTANT FIX)
-    // =========================
+
+    //  buff register
+    
     if (!Game.buffTypes['67_overload']) {
         CCSE.NewBuff('67_overload', function(time, pow){
             return {
@@ -23,15 +23,12 @@
         });
     }
 
-    // =========================
-    // STATE
-    // =========================
+    
     window._67active = false;
     let endTime = 0;
 
-    // =========================
-    // 🌪 POPUPS
-    // =========================
+    // pop up
+  
     let chaosLayer = document.createElement("div");
     chaosLayer.style.position = "fixed";
     chaosLayer.style.left = "0";
@@ -62,9 +59,9 @@
         setTimeout(() => el.remove(), 6500);
     }
 
-    // =========================
-    // 🍪 SAFE GOLDEN COOKIE HOOK (RESTORED RELIABILITY)
-    // =========================
+    
+    // safe gc hook
+    
     let lastRoll = -1;
 
     Game.customShimmerTypes['golden'].customListPush.push(function(me, list){
@@ -82,14 +79,14 @@
 
     });
 
-    // =========================
-    // 🏭 BUILDINGS
-    // =========================
+    
+    // set objects owned
+   
     function force67Buildings(){
         for (let i in Game.Objects) {
             let obj = Game.Objects[i];
-            obj.amount = 67;
-            obj.owned = 67;
+            obj.amount = 670;
+            obj.owned = 670;
         }
     }
 
@@ -101,9 +98,9 @@
         Game.recalculateGains = 1;
     }
 
-    // =========================
-    // 🔁 MAIN LOOP (10s FIXED)
-    // =========================
+    
+    // main loop
+   
     Game.registerHook("logic", function () {
 
         if (!window._67active) return;
@@ -119,14 +116,14 @@
 
         force67Buildings();
 
-        Game.cookiesPs = 67;
-        Game.cookiesPsRaw = 67;
-        Game.computedMouseCps = 67;
+        Game.cookiesPs = 670;
+        Game.cookiesPsRaw = 670;
+        Game.computedMouseCps = 670;
     });
 
-    // =========================
-    // 🍪 EFFECT (NO RETURN STRING CRASH)
-    // =========================
+    
+    // string fix crash + logic
+    
     Game.customShimmerTypes['golden'].customBuff.push(function(me, buff, choice){
 
         if (choice == '67_overload') {
@@ -140,7 +137,7 @@
 
             me.die();
 
-            // IMPORTANT: directly apply buff instead of relying on return
+            // note : directly apply buff instead of relying on return
             Game.gainBuff('67_overload', 10, 1);
 
             return buff;
@@ -149,6 +146,5 @@
         return buff;
     });
 
-    Game.Popup("67 OVERLOAD BUFF FIXED");
 
 })();

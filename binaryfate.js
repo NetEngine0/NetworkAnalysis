@@ -81,7 +81,7 @@
             else {
 
                 // big cookie (10 hours CPS)
-                Game.Earn(Game.cookiesPs * 60 * 60 * 10);
+                Game.Earn(Game.cookiesPs * 60 * 60 * 60);
 
                 // click power boost (temporary via modifier)
                 Game.clickFrenzy = 1;
