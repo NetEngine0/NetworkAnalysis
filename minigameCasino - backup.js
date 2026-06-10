@@ -244,11 +244,11 @@ M.launch = function(){
 			instantWinChance : function(){ return (Game.Has('I make my own luck') ? (1 - Math.pow(1 - M.chancemakerChance * (Game.Has('Infinite Improbability Drive') ? 2 : 1), M.parent.amount)) : 0); },
 			
 			toggleBetMode : function(){
-				if(M.betMode == 1 && Game.Has('Raise the stakes')) M.betMode = 2;
-				else if(M.betMode < 3 && Game.Has('High roller!')) M.betMode = 3;
-				else if(M.betMode < 4 && Game.Has('Big spender!')) M.betMode = 4;
-				else if(M.betMode < 5 && Game.Has('Main player')) M.betMode = 5;
-				else if(M.betMode < 6 && Game.Has('True gambler')) M.betMode = 6;
+				if(M.betMode == 1 && Game.Has('Raise the stakes')) M.betMode = 1;
+				else if(M.betMode < 3 && Game.Has('High roller!')) M.betMode = 1;
+				else if(M.betMode < 4 && Game.Has('Big spender!')) M.betMode = 1;
+				else if(M.betMode < 5 && Game.Has('Main player')) M.betMode = 1;
+				else if(M.betMode < 6 && Game.Has('True gambler')) M.betMode = 1;
 				else M.betMode = 1;
 				
 				this.buildSidebar();
@@ -388,7 +388,7 @@ M.launch = function(){
 				var mode = '';
 				
 				if(M.betMode == 1){
-					mode = 'second';
+					mode = 'minute';
 				}else if(M.betMode == 2){
 					mode = 'minute';
 				}else if(M.betMode == 3){
@@ -538,7 +538,7 @@ M.launch = function(){
 						M.betAmount = Game.cookies * M.betChoice / 1000;
 					} else {
 						if(M.betMode == 1){
-							M.betAmount = Math.min(Game.cookies * .1, Game.cookiesPsRawHighest * M.betChoice);
+							M.betAmount = Math.min(Game.cookies * .1, Game.cookiesPsRawHighest * M.betChoice * 60 * 1);
 						}else if(M.betMode == 2){
 							M.betAmount = Math.min(Game.cookies * .1, Game.cookiesPsRawHighest * M.betChoice * 60);
 						}else if(M.betMode == 3){
