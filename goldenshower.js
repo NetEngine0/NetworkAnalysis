@@ -50,7 +50,7 @@
 
         if (choice == 'golden cascade') {
 
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 20; i++) {
                 new Game.shimmer("golden");
             }
 
